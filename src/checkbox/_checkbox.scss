@@ -1,0 +1,145 @@
+@import "../variables";
+@import "../mixins";
+
+.mdl-checkbox {
+  box-sizing: border-box;
+  display: inline-block;
+  height: $checkbox-label-height;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  vertical-align: middle;
+  width: 100%;
+  z-index: 1;
+
+  &.is-upgraded {
+    padding-left: $checkbox-button-size + $checkbox-padding;
+    }
+  }
+
+.mdl-checkbox__input {
+  line-height: $checkbox-label-height;
+
+  .mdl-checkbox.is-upgraded & {
+    // Hide input element, while still making it respond to focus.
+    appearance: none;
+    border: 0;
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    width: 0;
+    }
+  }
+
+.mdl-checkbox__box-outline {
+  border: 2px solid $checkbox-off-color;
+  border-radius: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: $checkbox-button-size;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  top: $checkbox-top-offset;
+  width: $checkbox-button-size;
+  z-index: 2;
+
+  .mdl-checkbox.is-checked & {
+    border: 2px solid $checkbox-color;
+    }
+
+  fieldset[disabled] .mdl-checkbox &,
+  .mdl-checkbox.is-disabled & {
+    border: 2px solid $checkbox-disabled-color;
+    cursor: auto;
+    }
+  }
+
+.mdl-checkbox__focus-helper {
+  background-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: inline-block;
+  height: $checkbox-button-size;
+  left: 0;
+  position: absolute;
+  top: $checkbox-top-offset;
+  width: $checkbox-button-size;
+
+  .mdl-checkbox.is-focused & {
+    background-color: rgba(0, 0, 0, .1);
+    box-shadow: 0 0 0 ($checkbox-button-size / 2) rgba(0, 0, 0, .1);
+    }
+
+  .mdl-checkbox.is-focused.is-checked & {
+    background-color: $checkbox-focus-color;
+    box-shadow: 0 0 0 ($checkbox-button-size / 2) $checkbox-focus-color;
+    }
+  }
+
+.mdl-checkbox__tick-outline {
+  @include material-animation-default(.28s);
+  background: transparent;
+  height: 100%;
+  left: 0;
+  mask: url("#{$checkbox-image-path}/tick-mask.svg?embed");
+  position: absolute;
+  top: 0;
+  transition-property: background;
+  width: 100%;
+
+  .mdl-checkbox.is-checked & {
+    background: $checkbox-color url("#{$checkbox-image-path}/tick.svg?embed");
+    }
+
+  fieldset[disabled] .mdl-checkbox.is-checked &,
+  .mdl-checkbox.is-checked.is-disabled & {
+    background: $checkbox-disabled-color url("#{$checkbox-image-path}/tick.svg?embed");
+    }
+  }
+
+.mdl-checkbox__label {
+  cursor: pointer;
+  font-size: $checkbox-label-font-size;
+  line-height: $checkbox-label-height;
+  margin: 0;
+  position: relative;
+
+  fieldset[disabled] .mdl-checkbox &,
+  .mdl-checkbox.is-disabled & {
+    color: $checkbox-disabled-color;
+    cursor: auto;
+    }
+  }
+
+.mdl-checkbox__ripple-container {
+  border-radius: 50%;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: $checkbox-ripple-size;
+  left: -(($checkbox-ripple-size - $checkbox-button-size) / 2);
+  mask-image: radial-gradient(circle, #ffffff, #000000);
+  overflow: hidden;
+  position: absolute;
+  top: -(($checkbox-ripple-size - $checkbox-label-height) / 2);
+  width: $checkbox-ripple-size;
+  z-index: 2;
+
+  .mdl-ripple {
+    background: $checkbox-color;
+    }
+
+  fieldset[disabled] .mdl-checkbox &,
+  .mdl-checkbox.is-disabled & {
+    cursor: auto;
+    }
+
+  fieldset[disabled] .mdl-checkbox & .mdl-ripple,
+  .mdl-checkbox.is-disabled & .mdl-ripple {
+    background: transparent;
+    }
+  }

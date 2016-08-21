@@ -1,0 +1,108 @@
+@import "../variables";
+
+.mdl-progress {
+  display: block;
+  height: $bar-height;
+  max-width: 100%;
+  position: relative;
+  width: 500px;
+
+  > .bar {
+    bottom: 0;
+    display: block;
+    position: absolute;
+    top: 0;
+    transition: width .2s $animation-curve-default;
+    width: 0;
+    }
+
+  > .progressbar {
+    background-color: $progress-main-color;
+    left: 0;
+    z-index: 1;
+    }
+
+  > .bufferbar {
+    background-image: linear-gradient(to right, $progress-secondary-color, $progress-secondary-color),
+    linear-gradient(to right, $progress-main-color, $progress-main-color);
+    left: 0;
+    z-index: 0;
+    }
+
+  > .auxbar {
+    right: 0;
+    }
+  }
+
+// Webkit only
+@supports (-webkit-appearance:none) {
+  .mdl-progress:not(.mdl-progress--indeterminate):not(.mdl-progress--indeterminate) > .auxbar,
+  .mdl-progress:not(.mdl-progress__indeterminate):not(.mdl-progress__indeterminate) > .auxbar {
+    background-image: linear-gradient(to right, $progress-secondary-color, $progress-secondary-color),
+    linear-gradient(to right, $progress-main-color, $progress-main-color);
+    mask: url('#{$progress-image-path}/buffer.svg?embed');
+    }
+  }
+
+.mdl-progress:not(.mdl-progress--indeterminate) > .auxbar,
+.mdl-progress:not(.mdl-progress__indeterminate) > .auxbar {
+  background-image: linear-gradient(to right, $progress-fallback-buffer-color, $progress-fallback-buffer-color),
+  linear-gradient(to right, $progress-main-color, $progress-main-color);
+  }
+
+.mdl-progress.mdl-progress--indeterminate > .bar1,
+.mdl-progress.mdl-progress__indeterminate > .bar1 {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: indeterminate1;
+  animation-timing-function: linear;
+  background-color: $progress-main-color;
+  }
+
+.mdl-progress.mdl-progress--indeterminate > .bar3,
+.mdl-progress.mdl-progress__indeterminate > .bar3 {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: indeterminate2;
+  animation-timing-function: linear;
+  background: $progress-main-color none;
+  }
+
+@keyframes indeterminate1 {
+  0% {
+    left: 0;
+    width: 0;
+    }
+
+  50% {
+    left: 25%;
+    width: 75%;
+    }
+
+  75% {
+    left: 100%;
+    width: 0;
+    }
+  }
+
+@keyframes indeterminate2 {
+  0% {
+    left: 0;
+    width: 0;
+    }
+
+  50% {
+    left: 0;
+    width: 0;
+    }
+
+  75% {
+    left: 0;
+    width: 25%;
+    }
+
+  100% {
+    left: 100%;
+    width: 0;
+    }
+  }

@@ -1,0 +1,77 @@
+@import "../variables";
+@import "../mixins";
+
+.mdl-snackbar {
+  background-color: $snackbar-background-color;
+  bottom: 0;
+  cursor: default;
+  display: block;
+  display: flex;
+  font-family: $preferred-font;
+  justify-content: space-between;
+  left: 50%;
+  pointer-events: none;
+  position: fixed;
+  transform: translate(0, 80px);
+  transition: transform .25s $animation-curve-fast-out-linear-in;
+  will-change: transform;
+  z-index: 3;
+
+  @media(max-width: $snackbar-tablet-breakpoint - 1) {
+    left: 0;
+    max-height: 80px;
+    min-height: 48px;
+    width: 100%;
+    }
+
+  @media(min-width: $snackbar-tablet-breakpoint) {
+    border-radius: 2px;
+    max-width: 568px;
+    min-width: 288px;
+    transform: translate(-50%, 80px);
+    }
+
+  &--active {
+    pointer-events: auto;
+    transform: translate(0, 0);
+    transition: transform .25s $animation-curve-linear-out-slow-in;
+
+    @media(min-width: $snackbar-tablet-breakpoint) {
+      transform: translate(-50%, 0);
+      }
+    }
+
+  &__text {
+    color: #ffffff;
+    float: left;
+    padding: 14px 12px 14px 24px;
+    vertical-align: middle;
+    }
+
+  &__action {
+    @include typo-button();
+    align-self: center;
+    background: transparent;
+    border: 0;
+    color: $snackbar-action-color;
+    cursor: pointer;
+    float: right;
+    opacity: 0;
+    outline: none;
+    overflow: hidden;
+    padding: 14px 24px 14px 12px;
+    pointer-events: none;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &::-moz-focus-inner {
+      border: 0;
+      }
+
+    &:not([aria-hidden]) {
+      opacity: 1;
+      pointer-events: auto;
+      }
+    }
+  }

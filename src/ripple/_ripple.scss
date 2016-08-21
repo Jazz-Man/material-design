@@ -1,0 +1,26 @@
+@import "../variables";
+
+.mdl-ripple {
+  background: $ripple-bg-color;
+  border-radius: 50%;
+  height: 50px;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 50px;
+
+  &.is-animating {
+    transition: transform .3s $animation-curve-linear-out-slow-in,
+    width .3s $animation-curve-linear-out-slow-in,
+    height .3s $animation-curve-linear-out-slow-in,
+    opacity .6s $animation-curve-linear-out-slow-in;
+    }
+
+  &.is-visible {
+    opacity: .3;
+    }
+  }

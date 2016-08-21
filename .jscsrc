@@ -1,0 +1,26 @@
+{
+  "preset": "google",
+  "disallowSpacesInAnonymousFunctionExpression": null,
+  "validateLineBreaks": "LF",
+  "validateIndentation": 2,
+  "excludeFiles": ["node_modules/**",
+		"./gulpfile.js"
+	],
+  "maximumLineLength": 130,
+  "maxErrors": 500,
+  "validateQuoteMarks": "'",
+  "requireDotNotation": false,
+  "requireCamelCaseOrUpperCaseIdentifiers": null,
+  "additionalRules": ["./utils/jscs-rules/*.js", "../utils/jscs-rules/*.js"],
+  "jsDoc": {
+    "checkAnnotations": {
+      "preset": "closurecompiler",
+      "extra": {
+        "type": true,
+        "suppress": true
+      }
+    },
+    "checkTypes": "strictNativeCase",
+    "enforceExistence": "exceptExports"
+  }
+}

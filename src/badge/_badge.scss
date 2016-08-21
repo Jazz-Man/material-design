@@ -1,0 +1,57 @@
+@import "../variables";
+
+.mdl-badge {
+  margin-right: ($badge-size + $badge-padding);
+  position: relative;
+  white-space: nowrap;
+
+  &:not([data-badge]) {
+    margin-right: auto;
+    }
+
+  &[data-badge]:after {
+    align-content: center;
+    align-items: center;
+    background: $badge-background;
+    border-radius: 50%;
+    color: $badge-color;
+    content: attr(data-badge);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: $preferred-font;
+    font-size: $badge-font-size;
+    font-weight: 600;
+    height: $badge-size;
+    justify-content: center;
+    position: absolute;
+    right: -($badge-size + $badge-padding);
+    top: -($badge-size / 2);
+    width: $badge-size;
+
+    .mdl-button & {
+      right: -5px;
+      top: -10px;
+      }
+    }
+
+  &#{&} {
+
+    &--no-background {
+      &[data-badge]:after {
+        background: $badge-background-inverse;
+        box-shadow: 0 0 1px #808080;
+        color: $badge-color-inverse;
+        }
+      }
+
+    &--overlap {
+      margin-right: ($badge-size - $badge-overlap);
+
+      &:after {
+        right: -($badge-size - $badge-overlap);
+        }
+      }
+
+    }
+  }

@@ -1,0 +1,305 @@
+@import "../variables";
+@import "../mixins";
+
+// The button component. Defaults to a flat button.
+.mdl-button {
+
+  $button-class: #{&};
+
+  @include typo-button();
+  background: transparent;
+  border: 0;
+  border-radius: $button-border-radius;
+  color: $button-secondary-color;
+  cursor: pointer;
+  display: inline-block;
+  height: $button-height;
+  line-height: $button-height;
+  margin: 0;
+  min-width: $button-min-width;
+  outline: none;
+  overflow: hidden;
+  padding: 0 $button-padding;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s $animation-curve-fast-out-linear-in,
+  background-color .2s $animation-curve-default,
+  color .2s $animation-curve-default;
+  vertical-align: middle;
+  will-change: box-shadow;
+
+  &::-moz-focus-inner {
+    border: 0;
+    }
+
+  &:hover {
+    background-color: $button-hover-color;
+    }
+
+  &:focus:not(:active) {
+    background-color: $button-focus-color;
+    }
+
+  &:active {
+    background-color: $button-active-color;
+    }
+  
+  &#{&} {
+    
+    &--colored {
+      
+      color: $button-primary-color-alt;
+
+      &:focus:not(:active) {
+        background-color: $button-focus-color-alt;
+        }
+      }
+
+    }
+
+  // Bump up specificity by using [disabled] twice.
+  &[disabled][disabled],
+  &#{&}--disabled#{&}--disabled {
+    background-color: transparent;
+    color: $button-secondary-color-disabled;
+    cursor: default;
+    }
+
+  // FABs
+  &--fab {
+
+    background: $button-primary-color;
+    border-radius: 50%;
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, .12), 0 1px 1px 0 rgba(0, 0, 0, .24);
+    font-size: $button-fab-font-size;
+    height: $button-fab-size;
+    line-height: normal;
+    margin: auto;
+    min-width: $button-fab-size;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: $button-fab-size;
+
+    .material-icons {
+      left: 50%;
+      line-height: $button-fab-font-size;
+      position: absolute;
+      top: 50%;
+      transform: translate(- $button-fab-font-size / 2, - $button-fab-font-size / 2);
+      width: $button-fab-font-size;
+      }
+
+    &#{$button-class}--mini-fab {
+  
+      height: $button-fab-size-mini;
+      min-width: $button-fab-size-mini;
+      width: $button-fab-size-mini;
+      }
+
+    #{$button-class}__ripple-container {
+      border-radius: 50%;
+      // Fixes clipping bug in Safari.
+      mask-image: radial-gradient(circle, #ffffff, #000000);
+      }
+
+    &:active {
+      @include shadow-4dp();
+      background-color: $button-active-color;
+      }
+
+    &:focus:not(:active) {
+      @include focus-shadow();
+      background-color: $button-active-color;
+      }
+
+    &#{$button-class}--colored {
+      background: $button-fab-color-alt;
+      color: $button-fab-text-color-alt;
+
+      &:hover {
+        background-color: $button-fab-hover-color-alt;
+        }
+
+      &:focus:not(:active) {
+        background-color: $button-fab-active-color-alt;
+        }
+
+      &:active {
+        background-color: $button-fab-active-color-alt;
+        }
+
+      .mdl-ripple {
+        background: $button-fab-ripple-color-alt;
+        }
+      }
+
+    // Bump up specificity by using [disabled] twice.
+    &[disabled][disabled],
+    &#{$button-class}--disabled#{$button-class}--disabled {
+      background-color: $button-primary-color-disabled;
+      color: $button-secondary-color-disabled;
+      }
+    }
+
+  // Raised buttons
+  &--raised {
+
+    @include shadow-2dp();
+    background: $button-primary-color;
+
+    &:active {
+      @include shadow-4dp();
+      background-color: $button-active-color;
+      }
+
+    &:focus:not(:active) {
+      @include focus-shadow();
+      background-color: $button-active-color;
+      }
+
+    &#{$button-class}--colored {
+      background: $button-primary-color-alt;
+      color: $button-secondary-color-alt;
+
+      &:hover {
+        background-color: $button-hover-color-alt;
+        }
+
+      &:active {
+        background-color: $button-active-color-alt;
+        }
+
+      &:focus:not(:active) {
+        background-color: $button-active-color-alt;
+        }
+
+      .mdl-ripple {
+        background: $button-ripple-color-alt;
+        }
+      }
+
+    // Bump up specificity by using [disabled] twice.
+    &[disabled][disabled],
+    &#{$button-class}--disabled#{$button-class}--disabled {
+
+      background-color: $button-primary-color-disabled;
+      box-shadow: none;
+      color: $button-secondary-color-disabled;
+      }
+    }
+
+  // Colored buttons
+  &--colored {
+    // Bump up specificity by using [disabled] twice.
+    &[disabled][disabled],
+    &#{$button-class}--disabled#{$button-class}--disabled {
+      color: $button-secondary-color-disabled;
+      }
+    }
+
+  // Icon buttons
+  &--icon {
+    border-radius: 50%;
+    color: inherit;
+    font-size: $button-fab-font-size;
+    height: $button-icon-size;
+    line-height: normal;
+    margin-left: 0;
+    margin-right: 0;
+    min-width: $button-icon-size;
+    overflow: hidden;
+    padding: 0;
+    width: $button-icon-size;
+
+    .material-icons {
+      left: 50%;
+      line-height: $button-fab-font-size;
+      position: absolute;
+      top: 50%;
+      transform: translate(- $button-fab-font-size / 2, - $button-fab-font-size / 2);
+      width: $button-fab-font-size;
+      }
+
+    &#{$button-class}--mini-icon {
+      height: $button-icon-size-mini;
+      min-width: $button-icon-size-mini;
+      width: $button-icon-size-mini;
+
+      .material-icons {
+        left: ($button-icon-size-mini - $button-fab-font-size) / 2;
+        top: ($button-icon-size-mini - $button-fab-font-size) / 2;
+        }
+      }
+
+    #{$button-class}__ripple-container {
+      border-radius: 50%;
+      // Fixes clipping bug in Safari.
+      mask-image: radial-gradient(circle, #ffffff, #000000);
+      }
+
+    }
+
+  // Ripples
+  &__ripple-container {
+    display: block;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+
+    #{$button-class}[disabled] & .mdl-ripple,
+    #{$button-class}#{$button-class}--disabled & .mdl-ripple {
+      background-color: transparent;
+      }
+
+    }
+
+  // Colorized buttons
+  &--primary {
+    &#{&} {
+      color: $button-primary-color-alt;
+
+      .mdl-ripple {
+        background: $button-secondary-color-alt;
+        }
+
+      &#{$button-class}--raised,
+      &#{$button-class}--fab {
+        background-color: $button-primary-color-alt;
+        color: $button-secondary-color-alt;
+        }
+
+      }
+    }
+
+  &--accent {
+    &#{&} {
+      color: $button-fab-color-alt;
+
+      .mdl-ripple {
+        background: $button-fab-text-color-alt;
+        }
+
+      &#{$button-class}--raised,
+      &#{$button-class}--fab {
+        background-color: $button-fab-color-alt;
+        color: $button-fab-text-color-alt;
+        }
+      }
+    }
+
+  // Align icons inside buttons with text
+  .material-icons {
+    vertical-align: middle;
+    }
+
+  @at-root input#{$button-class}[type="submit"] {
+    appearance: none;
+    }
+
+  }

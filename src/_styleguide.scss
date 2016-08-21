@@ -1,0 +1,82 @@
+@import "material";
+
+$padding: 24px;
+
+body {
+  margin: 0;
+  }
+
+.styleguide-demo {
+  opacity: 0;
+  transition: opacity .6s ease;
+
+  h1 {
+    margin: ($padding * 2) $padding 0 $padding;
+
+    &:after {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+      content: "";
+      display: block;
+      margin-top: $padding;
+      width: 100%;
+      }
+    }
+
+  }
+
+.styleguide-masthead {
+  background: unquote("rgb(#{nth($palette-grey, 10)})");
+  height: 256px;
+  padding: 115px 16px 0;
+  }
+
+.styleguide-container {
+  max-width: 960px;
+  position: relative;
+  width: 100%;
+  }
+
+.styleguide-title {
+  bottom: auto;
+  color: #ffffff;
+  font-size: 56px;
+  font-weight: 300;
+  letter-spacing: -.02em;
+  line-height: 1;
+  position: relative;
+
+  &:after {
+    border-bottom: 0;
+    }
+
+  span {
+    font-weight: 300;
+    }
+  }
+
+.mdl-styleguide .mdl-layout__drawer .mdl-navigation__link {
+  padding: 10px 24px;
+  }
+
+.demosLoaded .styleguide-demo {
+  opacity: 1;
+  }
+
+iframe {
+  border: 0;
+  display: block;
+  width: 100%;
+
+  &.heightSet {
+    overflow: hidden;
+    }
+
+  }
+
+.demo-wrapper {
+  margin: $padding;
+
+  iframe {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+  }

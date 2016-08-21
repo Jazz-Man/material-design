@@ -1,0 +1,89 @@
+@import "../variables";
+
+.mdl-card {
+  background: $card-background-color;
+  border-radius: 2px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-size: $card-font-size;
+  font-weight: 400;
+  min-height: $card-height;
+  overflow: hidden;
+  position: relative;
+  width: $card-width;
+  z-index: $card-z-index;
+  }
+
+.mdl-card__media {
+  background: $card-image-placeholder-color repeat scroll 50% 50%;
+  background-origin: padding-box;
+  background-size: cover;
+  box-sizing: border-box;
+  }
+
+.mdl-card__title {
+  align-items: center;
+  box-sizing: border-box;
+  color: $card-text-color;
+  display: flex;
+  justify-content: stretch;
+  line-height: normal;
+  padding: $card-vertical-padding $card-horizontal-padding;
+  perspective-origin: $card-title-perspective-origin-x $card-title-perspective-origin-y;
+  transform-origin: $card-title-transform-origin-x $card-title-transform-origin-y;
+
+  &.mdl-card--border {
+    border-bottom: 1px solid $card-border-color;
+    }
+  }
+
+.mdl-card__title-text {
+  align-self: flex-end;
+  color: inherit;
+  display: flex;
+  font-size: $card-title-font-size;
+  font-weight: $card-title-text-font-weight;
+  line-height: normal;
+  margin: 0;
+  overflow: hidden;
+  transform-origin: $card-title-text-transform-origin-x $card-title-text-transform-origin-y;
+  }
+
+.mdl-card__subtitle-text {
+  color: $card-subtitle-color;
+  font-size: $card-subtitle-font-size;
+  margin: 0;
+  }
+
+.mdl-card__supporting-text {
+  color: $card-supporting-text-text-color;
+  font-size: $card-supporting-text-font-size;
+  line-height: $card-supporting-text-line-height;
+  overflow: hidden;
+  padding: $card-vertical-padding $card-horizontal-padding;
+  width: 90%;
+  }
+
+.mdl-card__actions {
+  background-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  font-size: $card-actions-font-size;
+  line-height: normal;
+  padding: 8px;
+  width: 100%;
+
+  &.mdl-card--border {
+    border-top: 1px solid $card-border-color;
+    }
+  }
+
+.mdl-card--expand {
+  flex-grow: 1;
+  }
+
+.mdl-card__menu {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  }

@@ -1,0 +1,143 @@
+@import "../variables";
+@import "../mixins";
+
+.mdl-list {
+  display: block;
+  list-style: none;
+  padding: $list-border 0;
+  }
+
+.mdl-list__item {
+  @include typo-subhead();
+  align-items: center;
+  box-sizing: border-box;
+  color: $list-main-text-text-color;
+  cursor: default;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  line-height: 1;
+  min-height: $list-min-height;
+  overflow: hidden;
+  padding: $list-min-padding;
+
+  .mdl-list__item-primary-content {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-grow: 2;
+    order: 0;
+    text-decoration: none;
+
+    .mdl-list__item-icon {
+      margin-right: $list-icon-text-left-distance - $list-icon-size - $list-min-padding;
+      }
+
+    .mdl-list__item-avatar {
+      margin-right: $list-avatar-text-left-distance - $list-avatar-size - $list-min-padding;
+      }
+    }
+
+  .mdl-list__item-secondary-content {
+    align-items: flex-end;
+    display: flex;
+    flex-flow: column;
+    margin-left: $list-min-padding;
+
+    .mdl-list__item-secondary-action label {
+      display: inline;
+      }
+
+    .mdl-list__item-secondary-info {
+      @include typo-caption();
+      color: $list-supporting-text-text-color;
+      }
+
+    .mdl-list__item-sub-header {
+      padding: 0 0 0 $list-min-padding;
+      }
+    }
+  }
+
+.mdl-list__item-icon,
+.mdl-list__item-icon.material-icons {
+  box-sizing: border-box;
+  color: $list-icon-color;
+  font-size: $list-icon-size;
+  height: $list-icon-size;
+  width: $list-icon-size;
+  }
+
+.mdl-list__item-avatar,
+.mdl-list__item-avatar.material-icons {
+  background-color: $list-icon-color;
+  border-radius: 50%;
+  box-sizing: border-box;
+  color: $list-avatar-color;
+  // Set a background colour in case the user doesn't provide an image.
+  font-size: $list-avatar-size;
+  // Set a font size and color in case the user provides a Material Icon.
+  height: $list-avatar-size;
+  width: $list-avatar-size;
+  }
+
+.mdl-list__item--two-line {
+  height: $list-two-line-height;
+
+  .mdl-list__item-primary-content {
+    display: block;
+    height: $list-two-line-height - $list-min-padding - $list-bottom-padding;
+    line-height: 20px;
+
+    .mdl-list__item-avatar {
+      float: left;
+      }
+
+    .mdl-list__item-icon {
+      float: left;
+      // Icons are aligned to center of text in a two line list.
+      margin-top: ($list-two-line-height - $list-min-padding - $list-bottom-padding -
+         $list-icon-size) / 2;
+      }
+
+    .mdl-list__item-secondary-content {
+      height: $list-two-line-height - $list-min-padding - $list-bottom-padding;
+      }
+
+    .mdl-list__item-sub-title {
+      @include typo-body-1();
+      color: $list-supporting-text-text-color;
+      display: block;
+      line-height: 18px;
+      padding: 0;
+      }
+    }
+  }
+
+.mdl-list__item--three-line {
+  height: $list-three-line-height;
+
+  .mdl-list__item-primary-content {
+    display: block;
+    height: $list-three-line-height - $list-min-padding - $list-bottom-padding;
+    line-height: 20px;
+
+    .mdl-list__item-avatar,
+    .mdl-list__item-icon {
+      float: left;
+      }
+    }
+
+  .mdl-list__item-secondary-content {
+    height: $list-three-line-height - $list-min-padding - $list-bottom-padding;
+    }
+
+  .mdl-list__item-text-body {
+    @include typo-body-1();
+    color: $list-supporting-text-text-color;
+    display: block;
+    height: $list-three-line-height - $list-min-padding - $list-bottom-padding;
+    line-height: 18px;
+    padding: 0;
+    }
+  }

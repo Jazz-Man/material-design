@@ -1,0 +1,48 @@
+@import "../variables";
+
+.mdl-tooltip {
+  background: $tooltip-background-color;
+  border-radius: 2px;
+  color: $tooltip-text-color;
+  display: inline-block;
+  font-size: $tooltip-font-size;
+  font-weight: 500;
+  left: -500px;
+  line-height: 14px;
+  max-width: 170px;
+  padding: 8px;
+  position: fixed;
+  text-align: center;
+  top: -500px;
+  transform: scale(0);
+  transform-origin: top center;
+  will-change: transform;
+  z-index: 999;
+
+  &.is-active {
+    animation: pulse 200ms $animation-curve-linear-out-slow-in forwards;
+    }
+  }
+
+.mdl-tooltip--large {
+  font-size: $tooltip-font-size-large;
+  line-height: 14px;
+  padding: 16px;
+  }
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+    }
+
+  50% {
+    transform: scale(.99);
+    }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+    }
+  }

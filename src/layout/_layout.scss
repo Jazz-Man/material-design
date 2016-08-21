@@ -1,0 +1,643 @@
+@import "../variables";
+@import "../mixins";
+
+// Navigation classes. Only used here for now, but we may at some point move
+// this to its own component.
+.mdl-navigation {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
+  }
+
+.mdl-navigation__link {
+  @include typo-body-1(true);
+  color: $layout-text-color;
+  margin: 0;
+  text-decoration: none;
+
+  // Align icons inside link with text
+  .material-icons {
+    vertical-align: middle;
+    }
+  }
+
+// Main layout class.
+.mdl-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+
+  // Utility classes for screen sizes.
+  &.is-small-screen .mdl-layout--large-screen-only {
+    display: none;
+    }
+  }
+
+.mdl-layout:not(.is-small-screen) .mdl-layout--small-screen-only {
+  display: none;
+  }
+
+.mdl-layout__container {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  }
+
+// Optional utility classes for formatting special blocks in this component.
+.mdl-layout__title,
+.mdl-layout-title {
+  @include typo-title();
+  box-sizing: border-box;
+  display: block;
+  font-weight: 400;
+  position: relative;
+  }
+
+.mdl-layout-spacer {
+  flex-grow: 1;
+  }
+
+// Drawer.
+.mdl-layout__drawer {
+  @include shadow-2dp();
+  @include material-animation-default();
+  background: $layout-drawer-bg-color;
+  border-right: 1px solid $layout-drawer-border-color;
+  box-sizing: border-box;
+
+  color: $layout-text-color;
+  display: flex;
+  flex-direction: column;
+
+  flex-wrap: nowrap;
+  height: 100%;
+  left: 0;
+  max-height: 100%;
+  overflow: visible;
+  overflow-y: auto;
+
+  // Transform offscreen.
+  position: absolute;
+  top: 0;
+  transform: translateX(-$layout-drawer-width - 10px);
+  transform-style: preserve-3d;
+
+  transition-property: transform;
+
+  width: $layout-drawer-width;
+  will-change: transform;
+
+  z-index: 5;
+
+  &.is-visible {
+    transform: translateX(0);
+
+    ~ .mdl-layout__content.mdl-layout__content {
+      overflow: hidden;
+      }
+    }
+
+  > * {
+    flex-shrink: 0;
+    }
+
+  > .mdl-layout__title,
+  > .mdl-layout-title {
+    line-height: $layout-desktop-header-height;
+    padding-left: $layout-header-desktop-indent;
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      line-height: $layout-mobile-header-height;
+      padding-left: $layout-header-mobile-indent;
+      }
+    }
+
+  .mdl-navigation {
+    align-items: stretch;
+    flex-direction: column;
+    padding-top: 16px;
+
+    .mdl-navigation__link {
+      color: $layout-drawer-navigation-color;
+      display: block;
+      flex-shrink: 0;
+      margin: 0;
+      padding: 16px $layout-header-desktop-indent;
+
+      @media screen and (max-width: $layout-screen-size-threshold) {
+        padding: 16px $layout-header-mobile-indent;
+        }
+
+      &:hover {
+        background-color: $layout-nav-color;
+        }
+
+      &--current {
+        background-color: $layout-drawer-navigation-link-active-background;
+        color: $layout-drawer-navigation-link-active-color;
+        }
+      }
+    }
+
+  @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+    .mdl-layout--fixed-drawer > & {
+      transform: translateX(0);
+      }
+    }
+  }
+
+// Drawer button.
+// TODO(sgomes): Replace with an icon button when we have that component.
+.mdl-layout__drawer-button {
+  border: 0;
+
+  color: $layout-header-text-color;
+  cursor: pointer;
+  display: block;
+  flex-shrink: 0;
+
+  font-family: Helvetica, Arial, sans-serif;
+
+  font-size: 26px;
+  height: $layout-drawer-button-desktop-size;
+  left: 0;
+  line-height: $layout-drawer-button-desktop-size + 2;
+  margin: 10px 12px;
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: $layout-drawer-button-desktop-size;
+
+  z-index: 4;
+
+  .mdl-layout__header & {
+    background-color: inherit;
+    color: $layout-header-text-color;
+    position: absolute;
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      margin: 4px;
+      }
+    }
+
+  @media screen and (max-width: $layout-screen-size-threshold) {
+    color: rgba(0, 0, 0, .5);
+    margin: 4px;
+    }
+
+  @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+    .mdl-layout--fixed-drawer > & {
+      display: none;
+      }
+
+    .mdl-layout--no-desktop-drawer-button & {
+      display: none;
+      }
+    }
+
+  .mdl-layout--no-drawer-button & {
+    display: none;
+    }
+  }
+
+.mdl-layout__header {
+  @include shadow-2dp();
+  @include material-animation-default();
+  background-color: $layout-header-bg-color;
+  border: 0;
+  box-sizing: border-box;
+  color: $layout-header-text-color;
+  display: flex;
+  flex-direction: column;
+
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin: 0;
+  max-height: 1000px;
+  min-height: $layout-desktop-header-height;
+  padding: 0;
+
+  transition-property: max-height, box-shadow;
+  width: 100%;
+  z-index: 3;
+
+  @media screen and (max-width: $layout-screen-size-threshold) {
+    min-height: $layout-mobile-header-height;
+    }
+
+  .mdl-layout--fixed-drawer.is-upgraded:not(.is-small-screen) > & {
+    margin-left: $layout-drawer-width;
+    width: calc(100% - #{$layout-drawer-width});
+    }
+
+  @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+    .mdl-layout--fixed-drawer > & {
+      .mdl-layout__header-row {
+        padding-left: 40px;
+        }
+      }
+    }
+
+  > .mdl-layout-icon {
+    display: block;
+    height: $layout-header-icon-size;
+    left: $layout-header-desktop-indent;
+    overflow: hidden;
+    position: absolute;
+    top: ($layout-desktop-header-height - $layout-header-icon-size) / 2;
+    width: $layout-header-icon-size;
+    z-index: 3;
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      left: $layout-header-mobile-indent;
+      top: ($layout-mobile-header-height - $layout-header-icon-size) / 2;
+      }
+    }
+
+  .mdl-layout.has-drawer & > .mdl-layout-icon {
+    display: none;
+    }
+
+  &.is-compact {
+    max-height: $layout-desktop-header-height;
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      max-height: $layout-mobile-header-height;
+      }
+
+    &.has-tabs {
+      height: $layout-desktop-header-height + $layout-tab-bar-height;
+
+      @media screen and (max-width: $layout-screen-size-threshold) {
+        min-height: $layout-mobile-header-height + $layout-tab-bar-height;
+        }
+      }
+    }
+
+  @media screen and (max-width: $layout-screen-size-threshold) {
+    & {
+      display: none;
+      }
+
+    .mdl-layout--fixed-header > & {
+      display: flex;
+      }
+    }
+  }
+
+.mdl-layout__header--transparent.mdl-layout__header--transparent {
+  background-color: transparent;
+  box-shadow: none;
+  }
+
+.mdl-layout__header--seamed {
+  box-shadow: none;
+  }
+
+.mdl-layout__header--scroll {
+  box-shadow: none;
+  }
+
+.mdl-layout__header--waterfall {
+  box-shadow: none;
+  overflow: hidden;
+
+  &.is-casting-shadow {
+    @include shadow-2dp();
+    }
+
+  &.mdl-layout__header--waterfall-hide-top {
+    justify-content: flex-end;
+    }
+  }
+
+.mdl-layout__header-row {
+  align-items: center;
+  align-self: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  height: $layout-header-desktop-row-height;
+  margin: 0;
+  padding: 0 $layout-header-desktop-indent 0 $layout-header-desktop-baseline;
+
+  .mdl-layout--no-drawer-button & {
+    padding-left: $layout-header-desktop-indent;
+    }
+
+  @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+    .mdl-layout--no-desktop-drawer-button & {
+      padding-left: $layout-header-desktop-indent;
+      }
+    }
+
+  @media screen and (max-width: $layout-screen-size-threshold) {
+    height: $layout-header-mobile-row-height;
+    padding: 0 $layout-header-mobile-indent 0 $layout-header-mobile-baseline;
+
+    .mdl-layout--no-drawer-button & {
+      padding-left: $layout-header-mobile-indent;
+      }
+    }
+
+  > * {
+    flex-shrink: 0;
+    }
+
+  .mdl-layout__header--scroll & {
+    width: 100%;
+    }
+
+  .mdl-navigation {
+    align-items: center;
+    flex-direction: row;
+    height: $layout-header-desktop-row-height;
+    margin: 0;
+    padding: 0;
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      height: $layout-header-mobile-row-height;
+      }
+    }
+
+  .mdl-navigation__link {
+    color: $layout-header-text-color;
+    display: block;
+    line-height: $layout-header-desktop-row-height;
+    padding: 0 24px;
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      line-height: $layout-header-mobile-row-height;
+      padding: 0 $layout-header-mobile-indent;
+      }
+    }
+  }
+
+// Obfuscator.
+.mdl-layout__obfuscator {
+  @include material-animation-default();
+  background-color: transparent;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition-property: background-color;
+  visibility: hidden;
+  width: 100%;
+  z-index: 4;
+
+  &.is-visible {
+    background-color: rgba(0, 0, 0, .5);
+    visibility: visible;
+    }
+
+  @supports (pointer-events: auto) {
+    background-color: rgba(0, 0, 0, .5);
+    opacity: 0;
+    transition-property: opacity;
+    visibility: visible;
+    pointer-events: none;
+
+    &.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      }
+    }
+  }
+
+// Content.
+.mdl-layout__content {
+  display: inline-block;
+
+  -ms-flex: 0 1 auto;
+  flex-grow: 1;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+
+  .mdl-layout--fixed-drawer > & {
+    margin-left: $layout-drawer-width;
+    }
+
+  .mdl-layout__container.has-scrolling-header & {
+    overflow: visible;
+    }
+
+  @media screen and (max-width: $layout-screen-size-threshold) {
+    .mdl-layout--fixed-drawer > & {
+      margin-left: 0;
+      }
+
+    .mdl-layout__container.has-scrolling-header & {
+      overflow-x: hidden;
+      overflow-y: auto;
+      }
+    }
+  }
+
+// Tabs.
+.mdl-layout__tab-bar {
+  background-color: $layout-header-bg-color;
+  display: flex;
+  height: $layout-tab-bar-height * 2;
+  margin: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 0 0 0 $layout-header-desktop-baseline - $layout-tab-desktop-padding;
+  width: calc(100% -
+  #{(($layout-header-desktop-baseline - $layout-tab-desktop-padding) * 2)});
+
+  &::-webkit-scrollbar {
+    display: none;
+    }
+
+  .mdl-layout--no-drawer-button & {
+    padding-left: $layout-header-desktop-indent - $layout-tab-desktop-padding;
+    width: calc(100% -
+    #{(($layout-header-desktop-indent - $layout-tab-desktop-padding) * 2)});
+    }
+
+  @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+    .mdl-layout--no-desktop-drawer-button & {
+      padding-left: $layout-header-desktop-indent - $layout-tab-desktop-padding;
+      width: calc(100% -
+      #{(($layout-header-desktop-indent - $layout-tab-desktop-padding) * 2)});
+      }
+    }
+
+  @media screen and (max-width: $layout-screen-size-threshold) {
+    padding: 0 0 0 ($layout-header-mobile-baseline - $layout-tab-mobile-padding);
+    width: calc(100% -
+    #{($layout-header-mobile-baseline - $layout-tab-mobile-padding)});
+
+    .mdl-layout--no-drawer-button & {
+      padding-left: $layout-header-mobile-indent - $layout-tab-mobile-padding;
+      width: calc(100% -
+      #{(($layout-header-mobile-indent - $layout-tab-mobile-padding) * 2)});
+      }
+    }
+
+  .mdl-layout--fixed-tabs & {
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+    }
+  }
+
+.mdl-layout__tab-bar-container {
+  border: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: $layout-tab-bar-height;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+
+  .mdl-layout__container > & {
+    left: 0;
+    position: absolute;
+    top: 0;
+    }
+  }
+
+.mdl-layout__tab-bar-button {
+  background-color: $layout-header-bg-color;
+  color: transparent;
+  cursor: pointer;
+  display: inline-block;
+  height: $layout-tab-bar-height;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  user-select: none;
+  width: $layout-header-desktop-baseline - $layout-tab-desktop-padding;
+  z-index: 4;
+
+  .mdl-layout--no-desktop-drawer-button &,
+  .mdl-layout--no-drawer-button & {
+    width: $layout-header-desktop-indent - $layout-tab-desktop-padding;
+
+    .material-icons {
+      left: ($layout-header-desktop-indent - $layout-tab-desktop-padding - 24px) / 2;
+      position: relative;
+      }
+    }
+
+  @media screen and (max-width: $layout-screen-size-threshold) {
+    display: none;
+    width: $layout-header-mobile-baseline - $layout-tab-mobile-padding;
+    }
+
+  .mdl-layout--fixed-tabs & {
+    display: none;
+    }
+
+  .material-icons {
+    line-height: $layout-tab-bar-height;
+    }
+
+  &.is-active {
+    color: $layout-header-text-color;
+    }
+  }
+
+.mdl-layout__tab-bar-left-button {
+  left: 0;
+  }
+
+.mdl-layout__tab-bar-right-button {
+  right: 0;
+  }
+
+.mdl-layout__tab {
+  border: 0;
+  color: $layout-header-tab-text-color;
+  display: block;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+  float: left;
+  font-size: $layout-tab-font-size;
+  font-weight: 500;
+
+  height: $layout-tab-bar-height;
+  line-height: $layout-tab-bar-height;
+  margin: 0;
+
+  overflow: hidden;
+  padding: 0 $layout-tab-desktop-padding 0 $layout-tab-desktop-padding;
+  position: relative;
+  text-align: center;
+
+  text-decoration: none;
+  text-transform: uppercase;
+
+  @media screen and (max-width: $layout-screen-size-threshold) {
+    padding: 0 $layout-tab-mobile-padding 0 $layout-tab-mobile-padding;
+    }
+
+  .mdl-layout--fixed-tabs & {
+    flex-grow: 1;
+    float: none;
+    padding: 0;
+    }
+
+  .mdl-layout.is-upgraded &.is-active {
+    color: $layout-header-text-color;
+    }
+
+  .mdl-layout.is-upgraded &.is-active::after {
+    animation: border-expand .2s cubic-bezier(.4, 0, .4, 1) .01s alternate forwards;
+    background: $layout-header-tab-highlight;
+    bottom: 0;
+    content: " ";
+    display: block;
+    height: $layout-tab-highlight-thickness;
+    left: 0;
+    position: absolute;
+    transition: all 1s cubic-bezier(.4, 0, 1, 1);
+    width: 100%;
+    }
+
+  .mdl-layout__tab-ripple-container {
+    display: block;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    .mdl-ripple {
+      background-color: $layout-header-text-color;
+      }
+    }
+  }
+
+.mdl-layout__tab-panel {
+  display: block;
+
+  .mdl-layout.is-upgraded & {
+    display: none;
+
+    &.is-active {
+      display: block;
+      }
+
+    }
+
+  }

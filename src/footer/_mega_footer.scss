@@ -1,0 +1,278 @@
+@import "../variables";
+@import "../mixins";
+
+.mdl-mega-footer {
+  background-color: $footer-bg-color;
+  color: $footer-color;
+  padding: $footer-min-padding $footer-padding-sides;
+  }
+
+.mdl-mega-footer--top-section:after,
+.mdl-mega-footer--middle-section:after,
+.mdl-mega-footer--bottom-section:after,
+.mdl-mega-footer__top-section:after,
+.mdl-mega-footer__middle-section:after,
+.mdl-mega-footer__bottom-section:after {
+  clear: both;
+  content: "";
+  display: block;
+  }
+
+.mdl-mega-footer--left-section,
+.mdl-mega-footer__left-section {
+  margin-bottom: $footer-min-padding;
+  }
+
+.mdl-mega-footer--right-section,
+.mdl-mega-footer__right-section {
+  margin-bottom: $footer-min-padding;
+  }
+
+.mdl-mega-footer--right-section a,
+.mdl-mega-footer__right-section a {
+  color: inherit;
+  display: block;
+  margin-bottom: $footer-min-padding;
+  text-decoration: none;
+  }
+
+@media screen and (min-width: 760px) {
+  .mdl-mega-footer--left-section,
+  .mdl-mega-footer__left-section {
+    float: left;
+    }
+
+  .mdl-mega-footer--right-section,
+  .mdl-mega-footer__right-section {
+    float: right;
+    }
+
+  .mdl-mega-footer--right-section a,
+  .mdl-mega-footer__right-section a {
+    display: inline-block;
+    line-height: $footer-btn-size;
+    margin-left: $footer-min-padding;
+    vertical-align: middle;
+    }
+  }
+
+.mdl-mega-footer--social-btn,
+.mdl-mega-footer__social-btn {
+  background-color: $footer-button-fill-color;
+  border: 0;
+  height: $footer-btn-size;
+  margin: 0;
+  padding: 0;
+  width: $footer-btn-size;
+  }
+
+.mdl-mega-footer--drop-down-section,
+.mdl-mega-footer__drop-down-section {
+  display: block;
+
+  position: relative;
+  }
+
+@media screen and (min-width: 760px) {
+  .mdl-mega-footer--drop-down-section,
+  .mdl-mega-footer__drop-down-section {
+    width: 33%;
+    }
+
+  .mdl-mega-footer--drop-down-section:nth-child(1),
+  .mdl-mega-footer--drop-down-section:nth-child(2),
+  .mdl-mega-footer__drop-down-section:nth-child(1),
+  .mdl-mega-footer__drop-down-section:nth-child(2) {
+    float: left;
+    }
+
+  .mdl-mega-footer--drop-down-section:nth-child(3),
+  .mdl-mega-footer__drop-down-section:nth-child(3) {
+    float: right;
+
+    &:after {
+      clear: right;
+      }
+    }
+
+  .mdl-mega-footer--drop-down-section:nth-child(4),
+  .mdl-mega-footer__drop-down-section:nth-child(4) {
+    clear: right;
+    float: right;
+    }
+
+  .mdl-mega-footer--middle-section:after,
+  .mdl-mega-footer__middle-section:after {
+    clear: both;
+    content: "";
+    display: block;
+    }
+
+  .mdl-mega-footer--bottom-section,
+  .mdl-mega-footer__bottom-section {
+    padding-top: 0;
+    }
+  }
+
+@media screen and (min-width: 1024px) {
+  .mdl-mega-footer--drop-down-section,
+  .mdl-mega-footer--drop-down-section:nth-child(3),
+  .mdl-mega-footer--drop-down-section:nth-child(4),
+  .mdl-mega-footer__drop-down-section,
+  .mdl-mega-footer__drop-down-section:nth-child(3),
+  .mdl-mega-footer__drop-down-section:nth-child(4) {
+    float: left;
+    width: 24%;
+    }
+  }
+
+.mdl-mega-footer--heading-checkbox,
+.mdl-mega-footer__heading-checkbox {
+  cursor: pointer;
+  height: $footer-heading-line-height + ($footer-min-padding * 2);
+  margin: -$footer-min-padding 0 0;
+  opacity: 0;
+  padding: ($footer-min-padding * 2);
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+
+  + .mdl-mega-footer--heading:after,
+  + .mdl-mega-footer__heading:after {
+    content: "\E5CE";
+    font-family: "Material Icons";
+    }
+  }
+
+.mdl-mega-footer--heading-checkbox:checked,
+.mdl-mega-footer__heading-checkbox:checked {
+  // WebViews in iOS 9 break the "~" operator, and WebViews in OS X 10.10
+  // break consecutive "+" operators in some cases. Therefore, we need to use
+  // both here to cover all the bases.
+
+  ~ .mdl-mega-footer--link-list,
+  ~ .mdl-mega-footer__link-list,
+  + .mdl-mega-footer--heading + .mdl-mega-footer--link-list,
+  + .mdl-mega-footer__heading + .mdl-mega-footer__link-list {
+    display: none;
+    }
+
+  + .mdl-mega-footer--heading:after,
+  + .mdl-mega-footer__heading:after {
+    content: "\E5CF";
+    font-family: "Material Icons";
+    }
+  }
+
+.mdl-mega-footer--heading,
+.mdl-mega-footer__heading {
+  box-sizing: border-box;
+  color: $footer-heading-color;
+  font-size: $footer-heading-font-size;
+  font-weight: 500;
+  line-height: $footer-heading-line-height;
+  margin-bottom: $footer-min-padding;
+  overflow: hidden;
+  padding-right: $footer-heading-line-height + $footer-min-padding;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  }
+
+.mdl-mega-footer--heading:after,
+.mdl-mega-footer__heading:after {
+  background-size: cover;
+  content: "";
+  display: block;
+  height: $footer-heading-line-height;
+
+  position: absolute;
+
+  right: 0;
+  top: 0;
+
+  width: $footer-heading-line-height;
+  }
+
+.mdl-mega-footer--link-list,
+.mdl-mega-footer__link-list {
+  list-style: none;
+  margin: 0 0 $footer-min-padding * 2;
+  padding: 0;
+
+  &:after {
+    clear: both;
+    content: "";
+    display: block;
+    }
+  }
+
+.mdl-mega-footer--link-list li,
+.mdl-mega-footer__link-list li {
+  @include typo-body-1();
+  line-height: 20px;
+  }
+
+.mdl-mega-footer--link-list a,
+.mdl-mega-footer__link-list a {
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  }
+
+@media screen and (min-width: 760px) {
+  .mdl-mega-footer--heading-checkbox,
+  .mdl-mega-footer__heading-checkbox {
+    display: none;
+
+    + .mdl-mega-footer--heading:after,
+    + .mdl-mega-footer__heading:after {
+      content: "";
+      }
+    }
+
+  .mdl-mega-footer--heading-checkbox:checked,
+  .mdl-mega-footer__heading-checkbox:checked {
+    // WebViews in iOS 9 break the "~" operator, and WebViews in OS X 10.10
+    // break consecutive "+" operators in some cases. Therefore, we need to use
+    // both here to cover all the bases.
+    ~ .mdl-mega-footer--link-list,
+    ~ .mdl-mega-footer__link-list,
+    + .mdl-mega-footer__heading + .mdl-mega-footer__link-list,
+    + .mdl-mega-footer--heading + .mdl-mega-footer--link-list {
+      display: block;
+      }
+
+    + .mdl-mega-footer--heading:after,
+    + .mdl-mega-footer__heading:after {
+      content: "";
+      }
+    }
+  }
+
+.mdl-mega-footer--bottom-section,
+.mdl-mega-footer__bottom-section {
+  margin-bottom: $footer-min-padding;
+  padding-top: $footer-min-padding;
+  }
+
+.mdl-logo {
+  color: #ffffff;
+  margin-bottom: $footer-min-padding;
+  }
+
+.mdl-mega-footer--bottom-section .mdl-mega-footer--link-list li,
+.mdl-mega-footer__bottom-section .mdl-mega-footer__link-list li {
+  float: left;
+  margin-bottom: 0;
+  margin-right: $footer-min-padding;
+  }
+
+@media screen and (min-width: 760px) {
+  .mdl-logo {
+    float: left;
+    margin-bottom: 0;
+    margin-right: $footer-min-padding;
+    }
+  }

@@ -1,0 +1,100 @@
+@import "../variables";
+
+.mdl-icon-toggle {
+  display: inline-block;
+
+  height: $icon-toggle-size;
+
+  margin: 0;
+
+  padding: 0;
+  position: relative;
+  vertical-align: middle;
+  z-index: 1;
+  }
+
+.mdl-icon-toggle__input {
+  line-height: $icon-toggle-size;
+
+  .mdl-icon-toggle.is-upgraded & {
+    // Hide input element, while still making it respond to focus.
+    appearance: none;
+    border: 0;
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    width: 0;
+    }
+  }
+
+.mdl-icon-toggle__label {
+  background-color: transparent;
+  border-radius: 50%;
+  color: $icon-toggle-color;
+  cursor: pointer;
+  display: inline-block;
+  height: $icon-toggle-size;
+  margin-left: 0;
+  margin-right: 0;
+  min-width: $icon-toggle-size;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  transition: background-color .2s $animation-curve-default,
+  color .2s $animation-curve-default;
+  width: $icon-toggle-size;
+  will-change: background-color;
+
+  &.material-icons {
+    font-size: $icon-toggle-font-size;
+    line-height: $icon-toggle-size;
+    }
+
+  .mdl-icon-toggle.is-checked & {
+    color: $icon-toggle-checked-color;
+    }
+
+  .mdl-icon-toggle.is-disabled & {
+    color: $icon-toggle-disabled-color;
+    cursor: auto;
+    transition: none;
+    }
+
+  .mdl-icon-toggle.is-focused & {
+    background-color: $icon-toggle-focus-color;
+    }
+
+  .mdl-icon-toggle.is-focused.is-checked & {
+    background-color: $icon-toggle-checked-focus-color;
+    }
+  }
+
+.mdl-icon-toggle__ripple-container {
+  border-radius: 50%;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: $icon-toggle-ripple-size;
+  left: -(($icon-toggle-ripple-size - $icon-toggle-size) / 2);
+  mask-image: radial-gradient(circle, #ffffff, #000000);
+  overflow: hidden;
+  position: absolute;
+  top: -(($icon-toggle-ripple-size - $icon-toggle-size) / 2);
+  width: $icon-toggle-ripple-size;
+  z-index: 2;
+
+  .mdl-ripple {
+    background: $icon-toggle-color;
+    }
+
+  .mdl-icon-toggle.is-disabled & {
+    cursor: auto;
+
+    .mdl-ripple {
+      background: transparent;
+      }
+
+    }
+
+  }

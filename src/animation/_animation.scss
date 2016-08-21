@@ -1,0 +1,21 @@
+@import "../variables";
+
+.mdl-animation {
+  
+  &--default {
+    transition-timing-function: $animation-curve-default;
+    }
+
+  &--fast-out-slow-in {
+    transition-timing-function: $animation-curve-fast-out-slow-in;
+    }
+
+  &--linear-out-slow-in {
+    transition-timing-function: $animation-curve-linear-out-slow-in;
+    }
+
+  &--fast-out-linear-in {
+    transition-timing-function: $animation-curve-fast-out-linear-in;
+    }
+
+  }

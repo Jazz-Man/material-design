@@ -1,0 +1,184 @@
+@import "../variables";
+@import "../mixins";
+
+.mdl-menu__container {
+  border: 0;
+  display: block;
+  height: 0;
+  margin: 0;
+  overflow: visible;
+  padding: 0;
+  position: absolute;
+  visibility: hidden;
+  width: 0;
+  z-index: -1;
+
+  &.is-visible,
+  &.is-animating {
+    visibility: visible;
+    z-index: 999;
+    }
+  }
+
+.mdl-menu__outline {
+  @include shadow-2dp();
+  background: $default-dropdown-bg-color;
+  border: 0;
+  border-radius: 2px;
+  display: block;
+  left: 0;
+  margin: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  transform: scale(0);
+  transform-origin: 0 0;
+  transition: transform $menu-expand-duration $animation-curve-default,
+  opacity $menu-fade-duration $animation-curve-default;
+  will-change: transform;
+  z-index: -1;
+
+  .mdl-menu__container.is-visible & {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 999;
+    }
+
+  &.mdl-menu--bottom-right {
+    transform-origin: 100% 0;
+    }
+
+  &.mdl-menu--top-left {
+    transform-origin: 0 100%;
+    }
+
+  &.mdl-menu--top-right {
+    transform-origin: 100% 100%;
+    }
+  }
+
+.mdl-menu {
+  clip: rect(0 0 0 0);
+  height: auto;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  min-width: 124px;
+  opacity: 0;
+  padding: 8px 0;
+  position: absolute;
+  top: 0;
+  width: auto;
+  z-index: -1;
+
+  .mdl-menu__container.is-visible & {
+    opacity: 1;
+    z-index: 999;
+    }
+
+  &.is-animating {
+    transition: opacity $menu-fade-duration $animation-curve-default,
+    clip $menu-expand-duration $animation-curve-default;
+    }
+
+  &.mdl-menu--bottom-right {
+    left: auto;
+    right: 0;
+    }
+
+  &.mdl-menu--top-left {
+    bottom: 0;
+    top: auto;
+    }
+
+  &.mdl-menu--top-right {
+    bottom: 0;
+    left: auto;
+    right: 0;
+    top: auto;
+    }
+
+  &.mdl-menu--unaligned {
+    left: auto;
+    top: auto;
+    }
+  }
+
+.mdl-menu__item {
+  @include typo-body-1();
+  background-color: transparent;
+  border: 0;
+  color: $default-item-text-color;
+  cursor: pointer;
+  display: block;
+  height: 48px;
+  line-height: 48px;
+  margin: 0;
+  opacity: 0;
+  outline-color: $default-item-outline-color;
+  overflow: hidden;
+  padding: 0 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: opacity $menu-fade-duration $animation-curve-default;
+  user-select: none;
+  white-space: nowrap;
+
+  .mdl-menu__container.is-visible & {
+    opacity: 1;
+    }
+
+  &::-moz-focus-inner {
+    border: 0;
+    }
+
+  &--full-bleed-divider {
+    border-bottom: 1px solid $default-item-divider-color;
+    }
+
+  &[disabled],
+  &[data-mdl-disabled] {
+    background-color: transparent;
+    color: $disabled-item-text-color;
+    cursor: auto;
+
+    &:hover {
+      background-color: transparent;
+      }
+
+    &:focus {
+      background-color: transparent;
+      }
+
+    .mdl-ripple {
+      background: transparent;
+      }
+    }
+
+  &:hover {
+    background-color: $default-item-hover-bg-color;
+    }
+
+  &:focus {
+    background-color: $default-item-focus-bg-color;
+    outline: none;
+    }
+
+  &:active {
+    background-color: $default-item-active-bg-color;
+    }
+  }
+
+.mdl-menu__item--ripple-container {
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+  }
